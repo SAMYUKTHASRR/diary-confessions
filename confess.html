@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Write Your Confession</title>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Indie Flower', cursive;
+      background-image: url('images/newpaper.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-family: 'Indie Flower', cursive;
+      font-size: 1.2em;
+      padding: 10px;
+      border: 2px dashed #f2b5d4;
+      background: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      resize: none;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #f2b5d4;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      font-size: 1.1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e47ab3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Write Your Confession 💌</h1>
+    <textarea id="confessionInput" placeholder="Dear Diary..."></textarea>
+    <br>
+    <button onclick="saveConfession()">Save Confession</button>
+  </div>
+
+  <script>
+    function saveConfession() {
+      const confession = document.getElementById("confessionInput").value.trim();
+      if (confession) {
+        let confessions = JSON.parse(localStorage.getItem("confessions") || "[]");
+        confessions.push(confession);
+        localStorage.setItem("confessions", JSON.stringify(confessions));
+        alert("Saved! 💖");
+        window.location.href = "letters.html";
+      } else {
+        alert("Write something first!");
+      }
+    }
+  </script>
+</body>
+</html>
